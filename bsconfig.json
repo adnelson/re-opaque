@@ -13,6 +13,7 @@
     "in-source": true
   },
   "suffix": ".bs.js",
+  "namespace": "Opaque",
   "bs-dependencies": ["@glennsl/bs-json"],
   "bs-dev-dependencies": ["reason-jest"],
   "warnings": {

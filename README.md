@@ -1,13 +1,15 @@
+# re-opaque
 
+A ReasonML library for opaque data types.
 
-# Build
-```
-npm run build
-```
-
-# Watch
+## Build
 
 ```
-npm run watch
+yarn re:build
 ```
 
+## Watch
+
+```
+yarn re:watch
+```

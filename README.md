@@ -30,16 +30,16 @@ module MessageText = Opaque.String.Make(String.NoValidation);
 
 We can't create a username that's less than 5 characters:
 
-```
-// raises exception
+```reason
+// raises `TooShort("bad", 10)`
 let badUsername = "bad"->UserName.fromString;
 ```
 
 Or an email that doesn't match our regex:
 
-```
-// raises exception
-let badEmail = "i am not an email"->Email.fromString
+```reason
+// raises `RegexMatchError("i am not an email", <some regex>)`
+let badEmail = "i am not an email"->Email.fromString;
 ```
 
 This guarantee means that you have total confidence that you won't be handling invalid data, and pushes error boundaries as early as possible.
@@ -50,7 +50,7 @@ The `fromString` function will raise an `exn` exceptions to on failure. Differen
 
 Alternatively you can use `resultFromString`, which avoids potential error cascades. It's up to you.
 
-```
+```reason
 // Ok("probablyok"), which is typed as result(UserName.t, exn)
 let goodUsername = "probablyok"->UserName.resultFromString;
 

@@ -23,4 +23,5 @@ lib/bs
 *.mliast
 .vscode
 .merlin
-.bsb.lock
+.bsb.lock*.bs.js
+src/**/*.bs.js

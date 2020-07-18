@@ -27,13 +27,7 @@
     "test:watch": "jest __tests__ --watch"
   },
   "lint-staged": {
-    "*.{re,rei}": [
-      "bsrefmt --in-place",
-      "git add"
-    ],
-    "*.{js,json}": [
-      "prettier --write",
-      "git add"
-    ]
+    "*.{re,rei}": "bsrefmt --in-place",
+    "*.{js,json}": "prettier --write"
   }
 }

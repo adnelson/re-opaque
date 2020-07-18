@@ -7,8 +7,10 @@
   "devDependencies": {
     "@glennsl/bs-json": "^5.0.2",
     "bs-platform": "7.3.1",
+    "jest": "^26.1.0",
     "lint-staged": "^10.2.11",
-    "prettier": "^2.0.5"
+    "prettier": "^2.0.5",
+    "reason-jest": "^1.1.1"
   },
   "peerDependencies": {
     "@glennsl/bs-json": "^5",
@@ -20,10 +22,18 @@
     "re:watch": "bsb -make-world -w",
     "re:formatall": "find src __tests__ -name '*.re' | xargs npx bsrefmt --in-place",
     "re:formatchanged": "git diff --name-only --diff-filter=d HEAD -- '*.re' | xargs -I{} realpath --relative-to=. $(git rev-parse --show-toplevel)/'{}' | while read f; do npx bsrefmt --in-place \"$f\"; done",
-    "prepare": "mkdir -p .git/hooks && cp .pre-commit-hook .git/hooks/pre-commit && chmod +x .git/hooks/pre-commit"
+    "prepare": "mkdir -p .git/hooks && cp .pre-commit-hook .git/hooks/pre-commit && chmod +x .git/hooks/pre-commit",
+    "test": "jest __tests__",
+    "test:watch": "jest __tests__ --watch"
   },
   "lint-staged": {
-    "*.{re,rei}": "bsrefmt --in-place",
-    "*.{js,json}": "prettier --write"
+    "*.{re,rei}": [
+      "bsrefmt --in-place",
+      "git add"
+    ],
+    "*.{js,json}": [
+      "prettier --write",
+      "git add"
+    ]
   }
 }

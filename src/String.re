@@ -53,7 +53,14 @@ module Validation = {
 
   exception RegexMatchError(string, Js.Re.t);
 
-  module MatchRegex = (Config: {let regex: Js.Re.t;}) : Validator => {
+  module type MatchRegexConfig = {let regex: Js.Re.t;};
+  module MatchRegex =
+         (Config: MatchRegexConfig)
+         : {
+           include Validator;
+           include MatchRegexConfig;
+         } => {
+    include Config;
     let checkError =
       Some(
         s =>
@@ -76,6 +83,15 @@ module Validation = {
   module MaxLength = (N: {let n: int;}) : Validator => {
     let checkError =
       Some(s => s->Js.String.length > N.n ? Some(TooLong(s, N.n)) : None);
+  };
+
+  exception WrongLength(string, int);
+
+  module ExactLength = (N: {let n: int;}) : Validator => {
+    let checkError =
+      Some(
+        s => s->Js.String.length !== N.n ? Some(WrongLength(s, N.n)) : None,
+      );
   };
 };
 

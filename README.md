@@ -4,7 +4,7 @@ A ReasonML library for opaque data types with validation.
 
 ## Opaque strings
 
-At runtime, they are just strings. But since each of them is a distinct module, they form distinct types; so you can never e.g. mix up an Email with a Name. In addition,
+At runtime, they are just strings. But since each of them is a distinct module, they form distinct types; so you can never e.g. mix up an Email with a Name. In addition, you can set up validation rules and guarantee (short of escape hatches like `Obj.magic`) that all strings in the type will have been validated.
 
 ### Example
 
